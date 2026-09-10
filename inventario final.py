@@ -40,16 +40,16 @@ def registrar_producto():
         return
 
     nombre = input("Nombre del producto: ")
-    cantidad = int(input("Cantidad inicial: "))
-    precio = float(input("Precio: "))
+    try:
+        cantidad = int(input("Cantidad inicial: "))
+        precio = float(input("Precio: "))
+    except ValueError:
+        print("Error: cantidad y precio deben ser numeros validos.\n")
+        return
 
-    # --- PROCESO ---
-    nuevo = {"codigo": codigo, "nombre": nombre, "cantidad": cantidad, "precio": precio}
-    inventario.append(nuevo)
-    guardar_inventario()
-
-    # --- SALIDA ---
-    print(f"Producto '{nombre}' registrado con exito.\n")
+    if cantidad < 0 or precio < 0:
+        print("Error: cantidad y precio no pueden ser negativos.\n")
+        return
 
 
 def actualizar_existencias():
